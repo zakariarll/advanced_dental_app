@@ -2,7 +2,7 @@ package ma.dentalTech.service.modules.patient.api;
 
 import ma.dentalTech.common.exceptions.ServiceException;
 import ma.dentalTech.entities.patient.Patient;
-import ma.dentalTech.mvc.dto.PatientDTO;
+import ma.dentalTech.mvc.dto.patient.PatientDTO;
 
 import java.util.List;
 

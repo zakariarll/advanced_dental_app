@@ -8,7 +8,6 @@ import ma.dentalTech.entities.patient.Patient;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class DossierMedical {
-    // Composition des données
     private Patient patient;
 
     @Builder.Default
@@ -20,7 +19,6 @@ public class DossierMedical {
     @Builder.Default
     private List<Consultation> consultations = new ArrayList<>();
 
-    // Ajout d'une méthode métier utile
     public boolean aDesRisquesCritiques() {
         return antecedents.stream()
                 .anyMatch(a -> "CRITIQUE".equals(a.getNiveauRisque().name()));

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.dentalTech.mvc.controllers.modules.patient.api.PatientController;
-import ma.dentalTech.mvc.dto.PatientDTO;
+import ma.dentalTech.mvc.dto.patient.PatientDTO;
 import ma.dentalTech.mvc.ui.modules.patient.PatientView;
 import ma.dentalTech.service.modules.patient.api.PatientService;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import ma.dentalTech.mvc.dto.PatientDTO;
+import ma.dentalTech.mvc.dto.patient.PatientDTO;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
