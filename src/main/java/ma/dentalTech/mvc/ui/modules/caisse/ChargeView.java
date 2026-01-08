@@ -1,0 +1,90 @@
+package ma.dentalTech.mvc.ui.modules.caisse;
+
+import ma.dentalTech.mvc.dto.caisse.ChargeDTO;
+
+import javax.swing.*;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+
+public class ChargeView {
+
+    public static void afficherListeCharges(List<ChargeDTO> charges, String titre) {
+        SwingUtilities.invokeLater(() -> {
+            if (charges == null || charges.isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Aucune charge trouvée",
+                        titre,
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            StringBuilder message = new StringBuilder();
+            message.append(titre).append("\n");
+            message.append("=".repeat(70)).append("\n\n");
+
+            for (ChargeDTO charge : charges) {
+                message.append("ID: ").append(charge.getIdCharge()).append("\n");
+                message.append("Titre: ").append(charge.getTitre()).append("\n");
+                if (charge.getDescription() != null && !charge.getDescription().isEmpty()) {
+                    message.append("Description: ").append(charge.getDescription()).append("\n");
+                }
+                message.append("Montant: ").append(charge.getMontantFormate()).append("\n");
+                message.append("Date: ").append(charge.getDateFormatee()).append("\n");
+                message.append("Cabinet: ").append(charge.getIdCabinet()).append("\n");
+                message.append("-".repeat(70)).append("\n");
+            }
+
+            JTextArea textArea = new JTextArea(message.toString());
+            textArea.setEditable(false);
+            textArea.setCaretPosition(0);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            scrollPane.setPreferredSize(new java.awt.Dimension(700, 500));
+
+            JOptionPane.showMessageDialog(null,
+                    scrollPane,
+                    titre + " (" + charges.size() + " charge(s))",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+
+    public static void afficherMontantTotal(Double montant, String titre) {
+        SwingUtilities.invokeLater(() -> {
+            String montantFormate = formaterMontant(montant);
+            StringBuilder message = new StringBuilder();
+            message.append(titre).append("\n\n");
+            message.append("Total: ").append(montantFormate).append("\n");
+
+            JOptionPane.showMessageDialog(null,
+                    message.toString(),
+                    titre,
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+
+    public static void afficherSucces(String message) {
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(null,
+                    message,
+                    "Succès",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+
+    public static void afficherErreur(String message) {
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(null,
+                    message,
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+        });
+    }
+
+    private static String formaterMontant(Double montant) {
+        if (montant == null) return "0.00 MAD";
+        NumberFormat formatter = NumberFormat.getInstance(new Locale("fr", "MA"));
+        formatter.setMinimumFractionDigits(2);
+        formatter.setMaximumFractionDigits(2);
+        return formatter.format(montant) + " MAD";
+    }
+}
